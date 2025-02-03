@@ -1,6 +1,6 @@
 variable "instance_type"{}
 variable "components"{
-  default = ["frontend","Catalogue","User","Cart","Shipping","Payment","Dispatch"]
+  default = ["frontend","catalogue","user","cart","shipping","payment","dispatch"]
 }
 variable "zone_id" {}
 variable "vault_token"{}
