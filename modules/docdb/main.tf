@@ -1,17 +1,24 @@
 resource "aws_docdb_cluster" "docdb" {
-  cluster_identifier      = "my-docdb-cluster"
-  engine                  = "docdb"
-  master_username         = "docdb"
-  master_password         = "roboshop123"
-  backup_retention_period = 2
-  preferred_backup_window = "07:00-09:00"
-  skip_final_snapshot     = true
-  db_cluster_parameter_group_name = aws_docdb_cluster_parameter_group.pg.id
-  vpc_security_group_ids = [aws_security_group.security_group.id]
+  cluster_identifier               = "my-docdb-cluster"
+  engine                           = "${var.component}-${var.env}"
+  engine_version                   = var.engine_version
+  master_username                  = "docdb"
+  master_password                  = "roboshop123"
+  backup_retention_period          = 2
+  preferred_backup_window          = "07:00-09:00"
+  skip_final_snapshot              = true
+  db_cluster_parameter_group_name  = aws_docdb_cluster_parameter_group.pg.id
+  vpc_security_group_ids           = [aws_security_group.security_group.id]
+  kms_key_id                       = var.kms_key_id
+  storage_encrypted                = true
+
 }
 resource "aws_docdb_cluster_parameter_group" "pg" {
   family = "docdb3.6"
-  name   = "pg"
+  name   = "${var.component}-${var.env}-pg"
+  tags = {
+    Name = "${var.component}-${var.env}-pg"
+  }
 }
 resource "aws_docdb_subnet_group" "subnet_group" {
   name       = "${var.component}-${var.env}-sg"
