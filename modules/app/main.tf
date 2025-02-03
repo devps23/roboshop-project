@@ -28,18 +28,3 @@ resource "aws_route53_record" "records" {
   records = [aws_instance.component[count.index].private_ip]
   ttl     = 5
 }
-resource "aws_security_group" "security_group" {
-  ingress {
-    from_port = 22
-    to_port   = 22
-    protocol = "TCP"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  egress {
-    from_port = 0
-    to_port   = 0
-    protocol = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-}
