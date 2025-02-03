@@ -30,6 +30,7 @@ module "docdb"{
   server_app_port_cidr = var.backend_subnets
   kms_key_id           = each.value["kms_key_id"]
   engine_version       = each.value["engine_version"]
+  family               = each.value["family"]
 }
 # module "rabbitmq" {
 #   for_each                 = var.rabbitmq

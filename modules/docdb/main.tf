@@ -14,7 +14,7 @@ resource "aws_docdb_cluster" "docdb" {
 
 }
 resource "aws_docdb_cluster_parameter_group" "pg" {
-  family = "docdb4.0"
+  family = var.family
   name   = "${var.component}-${var.env}-pg"
   tags = {
     Name = "${var.component}-${var.env}-pg"

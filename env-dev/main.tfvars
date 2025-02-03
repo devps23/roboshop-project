@@ -33,7 +33,7 @@ docdb = {
   main = {
     kms_key_id     = "arn:aws:kms:us-east-1:041445559784:key/efbe7110-af67-4fdd-8290-c1928628ba47"
     engine_version = "4.0.0"
-    family  = "docdb3.6"
+    family  = "docdb4.0"
     component = "docdb"
     instance_class = "db.t3.medium"
   }
