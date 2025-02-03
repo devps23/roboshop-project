@@ -1,6 +1,6 @@
 resource "aws_docdb_cluster" "docdb" {
   cluster_identifier               = "my-docdb-cluster"
-  engine                           = "${var.component}-${var.env}"
+  engine                           = "${var.component}"
   engine_version                   = var.engine_version
   master_username                  = "docdb"
   master_password                  = "roboshop123"
