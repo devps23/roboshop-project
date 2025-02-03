@@ -11,7 +11,7 @@ default_vpc_id = "vpc-02a94ee8944923438"
 default_vpc_cidr_block="172.31.0.0/16"
 default_route_table_id="rtb-0a2e9ff93585c96fd"
 availability_zone = ["us-east-1a","us-east-1b"]
-kms_key_id      = "arn:aws:kms:us-east-1:041445559784:key/efbe7110-af67-4fdd-8290-c1928628ba47"
+kms_key_id      = "arn:aws:kms:us-east-1:041445559784:key/14862fc0-602f-4084-ae15-5c909d97048d"
 bastion_nodes = ["172.31.82.57"]
 # rabbitmq = {
 #   main = {
@@ -31,7 +31,7 @@ bastion_nodes = ["172.31.82.57"]
 # }
 docdb = {
   main = {
-    kms_key_id     = "arn:aws:kms:us-east-1:041445559784:key/efbe7110-af67-4fdd-8290-c1928628ba47"
+    kms_key_id     = "arn:aws:kms:us-east-1:041445559784:key/14862fc0-602f-4084-ae15-5c909d97048d"
     engine_version = "4.0.0"
     family  = "docdb4.0"
     component = "docdb"
