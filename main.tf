@@ -1,11 +1,11 @@
-module "app" {
-  source          = "./modules/app"
-  components      = var.components
-  instance_type   = var.instance_type
-  zone_id         = var.zone_id
-  subnets         = module.vpc.backend_subnets
-  bastion_nodes   = var.bastion_nodes
-}
+# module "app" {
+#   source          = "./modules/app"
+#   components      = var.components
+#   instance_type   = var.instance_type
+#   zone_id         = var.zone_id
+#   subnets         = module.vpc.backend_subnets
+#   bastion_nodes   = var.bastion_nodes
+# }
 module "vpc"{
   source                 = "./modules/vpc"
   availability_zone      = var.availability_zone
@@ -19,18 +19,18 @@ module "vpc"{
   public_subnets         = var.public_subnets
   vpc_cidr_block         = var.vpc_cidr_block
 }
-# module "docdb"{
-#   for_each             = var.docdb
-#   source               = "./modules/docdb"
-#   component            = each.value["docdb"]
-#   env                  = var.env
-#   subnets              = module.vpc.mysql_subnets
-#   instance_count       = 1
-#   instance_class       = each.value["instance_class"]
-#   server_app_port_cidr = var.backend_subnets
-#   kms_key_id           = each.value["kms_key_id"]
-#   engine_version       = each.value["engine_version"]
-# }
+module "docdb"{
+  for_each             = var.docdb
+  source               = "./modules/docdb"
+  component            = each.value["docdb"]
+  env                  = var.env
+  subnets              = module.vpc.mysql_subnets
+  instance_count       = 1
+  instance_class       = each.value["instance_class"]
+  server_app_port_cidr = var.backend_subnets
+  kms_key_id           = each.value["kms_key_id"]
+  engine_version       = each.value["engine_version"]
+}
 # module "rabbitmq" {
 #   for_each                 = var.rabbitmq
 #   source                   = "./modules/rabbitmq"
