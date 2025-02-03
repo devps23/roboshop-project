@@ -13,7 +13,7 @@ default_route_table_id="rtb-0a2e9ff93585c96fd"
 availability_zone = ["us-east-1a","us-east-1b"]
 # bastion_nodes = ["172.31.82.57"]
 # kms_key_id      = "arn:aws:kms:us-east-1:041445559784:key/efbe7110-af67-4fdd-8290-c1928628ba47"
-
+bastion_nodes = ["172.31.82.57"]
 # rabbitmq = {
 #   main = {
 #     instance_type   = "t3.micro"

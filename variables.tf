@@ -14,6 +14,7 @@ variable "mysql_subnets" {}
 variable "availability_zone" {}
 variable "public_subnets"{}
 variable "env"{}
+variable "bastion_nodes" {}
 # variable "rabbitmq" {}
 # variable "kms_key_id" {}
 # variable "elasticache" {}
