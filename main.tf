@@ -22,7 +22,7 @@ module "vpc"{
 module "docdb"{
   for_each             = var.docdb
   source               = "./modules/docdb"
-  component            = each.value["docdb"]
+  component            = each.value["component"]
   env                  = var.env
   subnets              = module.vpc.mysql_subnets
   instance_count       = 1
