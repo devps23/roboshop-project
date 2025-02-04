@@ -11,7 +11,7 @@ resource "aws_docdb_cluster" "docdb" {
   vpc_security_group_ids           = [aws_security_group.security_group.id]
   kms_key_id                       = var.kms_key_id
   storage_encrypted                = true
-
+  db_subnet_group_name             = aws_docdb_subnet_group.subnet_group.id
 }
 resource "aws_docdb_cluster_parameter_group" "pg" {
   family = var.family
