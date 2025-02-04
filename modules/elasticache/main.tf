@@ -9,10 +9,12 @@ resource "aws_elasticache_cluster" "example" {
   subnet_group_name     = aws_elasticache_subnet_group.sg.name
   security_group_ids    = [aws_security_group.security_group.id]
 
+
 }
 resource "aws_elasticache_subnet_group" "sg" {
   name       = "${var.component}-${var.env}-sg"
   subnet_ids = var.subnets
+
 
   tags = {
      Name  = "${var.component}-${var.env}-sg"
@@ -26,6 +28,9 @@ resource "aws_elasticache_parameter_group" "pg" {
   }
 }
 resource "aws_security_group" "security_group" {
+  name = "${var.component}-${var.env}-sg"
+  description = "${var.component}-${var.env}-sg"
+  vpc_id = var.vpc_id
   ingress {
     from_port = 6379
     to_port   = 6379
