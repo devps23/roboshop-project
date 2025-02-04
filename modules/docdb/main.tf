@@ -8,7 +8,7 @@ resource "aws_docdb_cluster" "docdb" {
   preferred_backup_window          = "07:00-09:00"
   skip_final_snapshot              = true
   db_cluster_parameter_group_name  = aws_docdb_cluster_parameter_group.pg.id
-  vpc_security_group_ids           = [aws_security_group.security_group.id]
+#   vpc_security_group_ids           = [aws_security_group.security_group.id]
   kms_key_id                       = var.kms_key_id
   storage_encrypted                = true
 
