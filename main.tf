@@ -1,11 +1,11 @@
-module "app" {
-  source          = "./modules/app"
-  components      = var.components
-  instance_type   = var.instance_type
-  zone_id         = var.zone_id
-  subnets         = module.vpc.backend_subnets
-  bastion_nodes   = var.bastion_nodes
-}
+# module "app" {
+#   source          = "./modules/app"
+#   components      = var.components
+#   instance_type   = var.instance_type
+#   zone_id         = var.zone_id
+#   subnets         = module.vpc.backend_subnets
+#   bastion_nodes   = var.bastion_nodes
+# }
 module "vpc"{
   source                 = "./modules/vpc"
   availability_zone      = var.availability_zone
@@ -31,7 +31,7 @@ module "docdb"{
   kms_key_id           = each.value["kms_key_id"]
   engine_version       = each.value["engine_version"]
   family               = each.value["family"]
-#   vpc_id               = module.vpc.vpc_id
+  vpc_id               = module.vpc.vpc_id
 }
 # module "rabbitmq" {
 #   for_each                 = var.rabbitmq
