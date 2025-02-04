@@ -50,7 +50,6 @@ module "rabbitmq" {
   subnets              = module.vpc.mysql_subnets
   component            = each.value["component"]
   env                  = each.value["env"]
-  vpc_id               = module.vpc.vpc_id
   family               = each.value["family"]
   node_type            = each.value["node_type"]
   engine_version       = each.value["engine_version"]
