@@ -1,11 +1,11 @@
-# module "app" {
-#   source          = "./modules/app"
-#   components      = var.components
-#   instance_type   = var.instance_type
-#   zone_id         = var.zone_id
-#   subnets         = module.vpc.backend_subnets
-#   bastion_nodes   = var.bastion_nodes
-# }
+module "app" {
+  source          = "./modules/app"
+  components      = var.components
+  instance_type   = var.instance_type
+  zone_id         = var.zone_id
+  subnets         = module.vpc.backend_subnets
+  bastion_nodes   = var.bastion_nodes
+}
 module "vpc"{
   source                 = "./modules/vpc"
   availability_zone      = var.availability_zone
