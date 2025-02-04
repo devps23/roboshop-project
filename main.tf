@@ -31,7 +31,7 @@ module "docdb"{
   kms_key_id           = each.value["kms_key_id"]
   engine_version       = each.value["engine_version"]
   family               = each.value["family"]
-  vpc_id               = module.vpc.vpc_id
+#   vpc_id               = module.vpc.vpc_id
 }
 # module "rabbitmq" {
 #   for_each                 = var.rabbitmq
