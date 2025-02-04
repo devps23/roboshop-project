@@ -1,4 +1,7 @@
 resource "aws_security_group" "security_group" {
+  name = "${var.component}-${var.env}-sg"
+  description = "${var.component}-${var.env}-sg"
+  vpc_id = var.vpc_id
   ingress {
     from_port = 5672
     to_port   = 5672

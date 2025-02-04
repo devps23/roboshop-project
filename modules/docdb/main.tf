@@ -37,6 +37,9 @@ resource "aws_docdb_cluster_instance" "cluster_instances" {
   }
 }
 resource "aws_security_group" "security_group" {
+  name   = "${var.component}-${var.env}-sg"
+  description = "${var.component}-${var.env}-sg"
+  vpc_id = var.vpc_id
   ingress {
     from_port = 27017
     to_port   = 27017
