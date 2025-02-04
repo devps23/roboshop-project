@@ -1,6 +1,6 @@
 resource "aws_instance" "component" {
   count = length(var.components)
-  ami = "ami-0b4f379183e5706b9"
+  ami = data.aws_ami.ami.image_id
   instance_type = var.instance_type
   subnet_id = var.subnets[0]
   instance_market_options {
