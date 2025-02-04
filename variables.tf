@@ -1,6 +1,7 @@
 variable "instance_type"{}
 variable "components"{
-  default = ["frontend","catalogue","user","cart","shipping","payment","dispatch"]
+  default = ["frontend","catalogue"]
+#   default = ["frontend","catalogue","user","cart","shipping","payment","dispatch"]
 }
 variable "zone_id" {}
 # variable "vault_token"{}
@@ -15,7 +16,7 @@ variable "availability_zone" {}
 variable "public_subnets"{}
 variable "env"{}
 variable "bastion_nodes" {}
-variable "rabbitmq" {}
+# variable "rabbitmq" {}
 variable "kms_key_id" {}
-variable "elasticache" {}
+# variable "elasticache" {}
 variable "docdb" {}
