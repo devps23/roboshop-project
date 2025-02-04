@@ -1,11 +1,11 @@
-# module "app" {
-#   source          = "./modules/app"
-#   components      = var.components
-#   instance_type   = var.instance_type
-#   zone_id         = var.zone_id
-#   subnets         = module.vpc.backend_subnets
-#   bastion_nodes   = var.bastion_nodes
-# }
+module "app" {
+  source          = "./modules/app"
+  components      = var.components
+  instance_type   = var.instance_type
+  zone_id         = var.zone_id
+  subnets         = module.vpc.backend_subnets
+  bastion_nodes   = var.bastion_nodes
+}
 module "vpc"{
   source                 = "./modules/vpc"
   availability_zone      = var.availability_zone
@@ -43,7 +43,7 @@ module "docdb"{
 #   kms_key_id               = each.value["kms_key_id"]
 #   env                      = var.env
 # }
-# module "reddis"{
+#  module "reddis"{
 #   for_each             = var.elasticache
 #   source               = "./modules/elasticache"
 #   server_app_port_cidr = var.backend_subnets

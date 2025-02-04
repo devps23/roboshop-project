@@ -17,5 +17,5 @@ variable "env"{}
 variable "bastion_nodes" {}
 # variable "rabbitmq" {}
 variable "kms_key_id" {}
-# variable "elasticache" {}
+variable "elasticache" {}
 variable "docdb" {}
