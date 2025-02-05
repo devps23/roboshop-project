@@ -18,8 +18,7 @@ rabbitmq = {
     kms_key_id     = "arn:aws:kms:us-east-1:041445559784:key/14862fc0-602f-4084-ae15-5c909d97048d"
     instance_type   = "t3.micro"
     component       = "rabbitmq"
-    bastion_nodes = ["172.31.82.57"]
-    zone_id="Z09583601MY3QCL7AJKBT"
+
   }
 }
 # elasticache = {

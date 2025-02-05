@@ -43,8 +43,8 @@ module "rabbitmq" {
   server_app_port_cidr     = var.backend_subnets
   kms_key_id               = each.value["kms_key_id"]
   env                      = var.env
-  bastion_nodes            = each.value["bastion_nodes"]
-  zone_id                  = each.value["zone_id"]
+  bastion_nodes            = var.bastion_nodes
+  zone_id                  = var.zone_id
 }
 #  module "reddis"{
 #   for_each             = var.elasticache
