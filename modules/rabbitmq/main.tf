@@ -9,10 +9,10 @@ resource "aws_security_group" "security_group" {
     cidr_blocks = var.server_app_port_cidr
   }
   ingress {
-    from_port = 22
-    to_port   = 22
-    protocol = "TCP"
-    cidr_blocks = var.bastion_nodes
+    from_port = 0
+    to_port   = 0
+    protocol = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {
