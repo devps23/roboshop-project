@@ -8,6 +8,12 @@ resource "aws_security_group" "security_group" {
     protocol = "TCP"
     cidr_blocks = var.server_app_port_cidr
   }
+  ingress {
+    from_port = 22
+    to_port   = 22
+    protocol = "TCP"
+    cidr_blocks = var.bastion_nodes
+  }
   egress {
     from_port = 0
     to_port   = 0
@@ -47,6 +53,13 @@ resource "null_resource" "rabbitmq" {
       "sudo bash /tmp/rabbitmq.sh"
     ]
   }
+}
+resource "aws_route53_record" "server" {
+  name    = "${var.component}-${var.env}"
+  type    = "A"
+  zone_id = var.zone_id
+  records = [aws_instance.instance.private_ip]
+  ttl     = 30
 }
 
 
