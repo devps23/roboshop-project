@@ -20,6 +20,9 @@ resource "aws_security_group" "security_group" {
     protocol = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+  tags = {
+    Name = "${var.component}-${var.env}-sg"
+  }
 }
 resource "aws_instance" "instance" {
   ami                    = data.aws_ami.ami.id
