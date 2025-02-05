@@ -21,15 +21,15 @@ rabbitmq = {
 
   }
 }
-# elasticache = {
-#   main = {
-#     component      = "redis"
-#     env            = "dev"
-#     family         = "redis6.x"
-#     node_type      = "cache.t4g.micro"
-#     engine_version = "6.2"
-#   }
-# }
+elasticache = {
+  main = {
+    component      = "redis"
+    env            = "dev"
+    family         = "redis6.x"
+    node_type      = "cache.t4g.micro"
+    engine_version = "6.2"
+  }
+}
 docdb = {
   main = {
     kms_key_id     = "arn:aws:kms:us-east-1:041445559784:key/14862fc0-602f-4084-ae15-5c909d97048d"
