@@ -30,6 +30,13 @@ resource "aws_instance" "instance" {
   subnet_id              = var.subnets[0]
   vpc_security_group_ids = [aws_security_group.security_group.id]
   instance_type          = var.instance_type
+  instance_market_options {
+    market_type = "spot"
+    spot_options {
+      instance_interruption_behavior = "stop"
+      spot_instance_type             = "persistent"
+    }
+  }
   root_block_device{
     encrypted  = true
     kms_key_id = var.kms_key_id
