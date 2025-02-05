@@ -19,20 +19,20 @@ module "vpc"{
   public_subnets         = var.public_subnets
   vpc_cidr_block         = var.vpc_cidr_block
 }
-# module "docdb"{
-#   for_each             = var.docdb
-#   source               = "./modules/docdb"
-#   component            = each.value["component"]
-#   env                  = var.env
-#   subnets              = module.vpc.mysql_subnets
-#   instance_count       = 1
-#   instance_class       = each.value["instance_class"]
-#   server_app_port_cidr = var.backend_subnets
-#   kms_key_id           = each.value["kms_key_id"]
-#   engine_version       = each.value["engine_version"]
-#   family               = each.value["family"]
-#   vpc_id               = module.vpc.vpc_id
-# }
+module "docdb"{
+  for_each             = var.docdb
+  source               = "./modules/docdb"
+  component            = each.value["component"]
+  env                  = var.env
+  subnets              = module.vpc.mysql_subnets
+  instance_count       = 1
+  instance_class       = each.value["instance_class"]
+  server_app_port_cidr = var.backend_subnets
+  kms_key_id           = each.value["kms_key_id"]
+  engine_version       = each.value["engine_version"]
+  family               = each.value["family"]
+  vpc_id               = module.vpc.vpc_id
+}
 # module "rabbitmq" {
 #   for_each                 = var.rabbitmq
 #   source                   = "./modules/rabbitmq"
@@ -46,18 +46,18 @@ module "vpc"{
 #   bastion_nodes            = var.bastion_nodes
 #   zone_id                  = var.zone_id
 # }
- module "reddis"{
-  for_each             = var.elasticache
-  source               = "./modules/elasticache"
-  server_app_port_cidr = var.backend_subnets
-  subnets              = module.vpc.mysql_subnets
-   vpc_id              = module.vpc.vpc_id
-  component            = each.value["component"]
-  env                  = each.value["env"]
-  family               = each.value["family"]
-  node_type            = each.value["node_type"]
-  engine_version       = each.value["engine_version"]
-}
+#  module "reddis"{
+#   for_each             = var.elasticache
+#   source               = "./modules/elasticache"
+#   server_app_port_cidr = var.backend_subnets
+#   subnets              = module.vpc.mysql_subnets
+#    vpc_id              = module.vpc.vpc_id
+#   component            = each.value["component"]
+#   env                  = each.value["env"]
+#   family               = each.value["family"]
+#   node_type            = each.value["node_type"]
+#   engine_version       = each.value["engine_version"]
+# }
 
 
 
