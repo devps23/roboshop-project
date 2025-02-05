@@ -7,7 +7,7 @@ resource "aws_elasticache_cluster" "example" {
   port                  = 6379
   parameter_group_name  = aws_elasticache_parameter_group.pg.name
   subnet_group_name     = aws_elasticache_subnet_group.sg.name
-#   security_group_ids    = [aws_security_group.security_group.id]
+  security_group_ids    = [aws_security_group.security_group.id]
 }
 resource "aws_elasticache_subnet_group" "sg" {
   name       = "${var.component}-${var.env}-sg"
