@@ -1,0 +1,25 @@
+pipeline {
+   agent { node { label 'ci-server' } }
+    stages {
+        stage("build stage"){
+            steps {
+                sh 'print build stage'
+            }
+        }
+        stage("deploy stage"){
+            steps {
+                sh 'print deploy stage'
+            }
+        }
+        stage("test stage"){
+            steps {
+                sh 'print test stage'
+            }
+        }
+        stage("release stage") {
+            steps {
+                sh 'print release stage'
+            }
+        }
+    }
+}

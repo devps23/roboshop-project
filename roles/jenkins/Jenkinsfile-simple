@@ -1,0 +1,26 @@
+pipeline {
+    agent any ;
+    stages {
+        stage("build stage"){
+            steps {
+                sh 'print OK'
+            }
+        }//build stage
+        stage("deploy stage"){
+            steps {
+                sh 'print OK'
+            }
+        }//deploy stage
+        stage("test stage"){
+            steps {
+                sh 'print OK'
+            }//test stage
+        }
+        stage("release stage"){
+            steps {
+                sh 'print OK'
+            }//release stage
+        }
+        
+    }
+}

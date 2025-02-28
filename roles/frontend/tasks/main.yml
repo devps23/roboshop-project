@@ -1,0 +1,56 @@
+- name: Install nginx
+  ansible.builtin.dnf:
+    name: nginx
+    state: latest
+
+- name: Remove directory
+  ansible.builtin.file:
+    path: rm -rf /usr/share/nginx/html/*
+    state: absent
+
+- name: Make a directory
+  ansible.builtin.file:
+    path: /usr/share/nginx/html
+    state: directory
+
+- name: Download frontend code
+  ansible.builtin.get_url:
+    url: https://roboshop-artifacts.s3.amazonaws.com/frontend.zip
+    dest:  /tmp/frontend.zip
+
+- name: Unarchive frontend
+  ansible.builtin.unarchive:
+    src: /tmp/frontend.zip
+    dest: /usr/share/nginx/html
+    remote_src: yes
+
+- name: Copy file with owner and permissions
+  ansible.builtin.copy:
+    src: roboshop.conf
+    dest: /etc/nginx/default.d/roboshop.conf
+
+- name: Copy file with owner and permissions
+  ansible.builtin.template:
+    src: mongo.repo
+    dest: /etc/yum.repos.d/mongo.repo
+
+- name: load schema
+  ansible.builtin.shell: mongo --host MONGODB-SERVER-IPADDRESS </app/schema/catalogue.js
+
+- name: deamon reload
+  ansible.builtin.systemd_service:
+    daemon_reload: true
+
+- name: Start and enable nginx service
+  ansible.builtin.service:
+    name: nginx
+    state: started
+    enabled: yes
+
+
+
+
+
+
+
+
