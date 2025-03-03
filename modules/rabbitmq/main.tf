@@ -47,24 +47,24 @@ resource "aws_instance" "instance" {
   }
 }
 # to run rabbitmq.sh through provisioner
-# resource "null_resource" "rabbitmq" {
-#   connection {
-#     type     =   "ssh"
-#     port     =    22
-#     host     =    aws_instance.instance.private_ip
-#     user     =    "admin"
-#     password =    "expenseAppe123"
-#   }
-#   provisioner "file" {
-#     source        =  "${path.module}/rabbitmq.sh"
-#     destination   = "/tmp/rabbitmq.sh"
-#   }
-#   provisioner "remote-exec" {
-#     inline = [
-#       "sudo bash /tmp/rabbitmq.sh"
-#     ]
-#   }
-# }
+resource "null_resource" "rabbitmq" {
+  connection {
+    type     =   "ssh"
+    port     =    22
+    host     =    aws_instance.instance.private_ip
+    user     =    "ec2-user"
+    password =    "DevOps321"
+  }
+  provisioner "file" {
+    source        =  "${path.module}/rabbitmq.sh"
+    destination   = "/tmp/rabbitmq.sh"
+  }
+  provisioner "remote-exec" {
+    inline = [
+      "sudo bash /tmp/rabbitmq.sh"
+    ]
+  }
+}
 resource "aws_route53_record" "server" {
   name    = "${var.component}-${var.env}"
   type    = "A"
