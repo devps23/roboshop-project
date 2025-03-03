@@ -1,6 +1,6 @@
 variable "instance_type"{}
 variable "components"{
-  default = ["frontend","catalogue"]
+  default = ["frontend","catalogue","user","cart","shipping","payment"]
 #   default = ["frontend","catalogue","user","cart","shipping","payment","dispatch"]
 }
 variable "zone_id" {}
