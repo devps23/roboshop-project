@@ -74,8 +74,9 @@ module "rds"{
   engine_version         = each.value["engine_version"]
   instance_class         = each.value["instance_class"]
   storage_type           = each.value["storage_type"]
-  family                = each.value["family"]
-  kms_key_id            = var.kms_key_id
+  family                 = each.value["family"]
+  kms_key_id             = var.kms_key_id
+  skip_final_snapshot    = each.value["skip_final_snapshot"]
 
 
 }
