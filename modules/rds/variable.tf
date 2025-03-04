@@ -11,3 +11,6 @@ variable "instance_class"{}
 variable "storage_type"{}
 variable "allocated_storage" {}
 variable "kms_key_id" {}
+variable "family" {}
+
+

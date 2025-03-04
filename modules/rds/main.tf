@@ -1,5 +1,5 @@
 resource "aws_db_instance" "db_instance" {
-  allocated_storage    = 20
+  allocated_storage    = var.allocated_storage
   db_name              = var.db_name
   engine               = var.engine
   engine_version       = var.engine_version
@@ -22,7 +22,7 @@ resource "aws_db_instance" "db_instance" {
 }
 resource "aws_db_parameter_group" "pg" {
   name   = "${var.env}-${var.component}-rds"
-  family = "mysql8.0"
+  family = var.family
   }
 resource "aws_db_subnet_group" "subnet_group" {
   name       = "${var.env}-${var.component}-sbgrp"
