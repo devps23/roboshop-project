@@ -40,8 +40,6 @@ docdb = {
 
   }
 }
-
-
 rds = {
   main = {
     kms_key_id          = "arn:aws:kms:us-east-1:041445559784:key/14862fc0-602f-4084-ae15-5c909d97048d"

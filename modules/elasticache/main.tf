@@ -1,4 +1,4 @@
-resource "aws_elasticache_cluster" "example" {
+resource "aws_elasticache_cluster" "redis_cluster" {
   cluster_id            = "${var.component}-${var.env}"
   engine                = var.component
   engine_version        = var.engine_version
