@@ -1,6 +1,6 @@
 env = "dev"
 instance_type = "t3.micro"
-zone_id="Z09583601MY3QCL7AJKBT"
+zone_id="Z08520602FC482APPVUI7"
 # vault_token="hvs.fMGVYmkvteLqprw3itd1iXUe"
 vpc_cidr_block="10.10.0.0/16"
 frontend_subnets=["10.10.0.0/19","10.10.32.0/19"]
