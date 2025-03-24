@@ -21,3 +21,9 @@ variable "kms_key_id" {}
 variable "elasticache" {}
 variable "docdb" {}
 variable "rds"{}
+
+
+
+
+
+

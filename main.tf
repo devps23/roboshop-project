@@ -1,11 +1,11 @@
-module "app" {
-  source          = "./modules/app"
-  components      = var.components
-  instance_type   = var.instance_type
-  zone_id         = var.zone_id
-  subnets         = module.vpc.backend_subnets
-  bastion_nodes   = var.bastion_nodes
-}
+# module "app" {
+#   source          = "./modules/app"
+#   components      = var.components
+#   instance_type   = var.instance_type
+#   zone_id         = var.zone_id
+#   subnets         = module.vpc.backend_subnets
+#   bastion_nodes   = var.bastion_nodes
+# }
 module "vpc"{
   source                 = "./modules/vpc"
   availability_zone      = var.availability_zone
@@ -33,19 +33,19 @@ module "docdb"{
   family               = each.value["family"]
   vpc_id               = module.vpc.vpc_id
 }
-module "rabbitmq" {
-  for_each                 = var.rabbitmq
-  source                   = "./modules/rabbitmq"
-  instance_type            = each.value["instance_type"]
-  subnets                  = module.vpc.mysql_subnets
-  vpc_id                   = module.vpc.vpc_id
-  component                = each.value["component"]
-  server_app_port_cidr     = var.backend_subnets
-  kms_key_id               = each.value["kms_key_id"]
-  env                      = var.env
-  bastion_nodes            = var.bastion_nodes
-  zone_id                  = var.zone_id
-}
+# module "rabbitmq" {
+#   for_each                 = var.rabbitmq
+#   source                   = "./modules/rabbitmq"
+#   instance_type            = each.value["instance_type"]
+#   subnets                  = module.vpc.mysql_subnets
+#   vpc_id                   = module.vpc.vpc_id
+#   component                = each.value["component"]
+#   server_app_port_cidr     = var.backend_subnets
+#   kms_key_id               = each.value["kms_key_id"]
+#   env                      = var.env
+#   bastion_nodes            = var.bastion_nodes
+#   zone_id                  = var.zone_id
+# }
  module "reddis"{
   for_each             = var.elasticache
   source               = "./modules/elasticache"
@@ -59,25 +59,34 @@ module "rabbitmq" {
   engine_version       = each.value["engine_version"]
 }
 
-module "rds"{
-  for_each               = var.rds
-  source                 = "./modules/rds"
-  component              = "rds"
-  env                    = var.env
-  vpc_id                 = module.vpc.vpc_id
-  rds_app_port           = 3306
-  server_app_port_cidr   = var.backend_subnets
-  subnet_id              = module.vpc.mysql_subnets
-  allocated_storage      = each.value["allocated_storage"]
-  db_name                = "mydb"
-  engine                 = "mysql"
-  engine_version         = each.value["engine_version"]
-  instance_class         = each.value["instance_class"]
-  storage_type           = each.value["storage_type"]
-  family                 = each.value["family"]
-  kms_key_id             = var.kms_key_id
-  skip_final_snapshot    = each.value["skip_final_snapshot"]
-
-
+# module "rds"{
+#   for_each               = var.rds
+#   source                 = "./modules/rds"
+#   component              = "rds"
+#   env                    = var.env
+#   vpc_id                 = module.vpc.vpc_id
+#   rds_app_port           = 3306
+#   server_app_port_cidr   = var.backend_subnets
+#   subnet_id              = module.vpc.mysql_subnets
+#   allocated_storage      = each.value["allocated_storage"]
+#   db_name                = "mydb"
+#   engine                 = "mysql"
+#   engine_version         = each.value["engine_version"]
+#   instance_class         = each.value["instance_class"]
+#   storage_type           = each.value["storage_type"]
+#   family                 = each.value["family"]
+#   kms_key_id             = var.kms_key_id
+#   skip_final_snapshot    = each.value["skip_final_snapshot"]
+#
+#
+# }
+module "eks"{
+  source                    =  "./modules/eks"
+  env                       =  var.env
+  subnet_id                 =  module.vpc.backend_subnets
+  component                 = "eks-cluster"
+  kms_key_id                = var.kms_key_id
+  vpc_id                    = module.vpc.vpc_id
+  bastion_nodes             = var.bastion_nodes
 }
 
